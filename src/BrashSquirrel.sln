@@ -1,0 +1,47 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35208.52
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BrashSquirrel.AppHost", "BrashSquirrel.AppHost\BrashSquirrel.AppHost.csproj", "{9F82BC11-BD8C-4118-9C1C-72A86A7D5E10}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BrashSquirrel.ServiceDefaults", "BrashSquirrel.ServiceDefaults\BrashSquirrel.ServiceDefaults.csproj", "{1AD5688A-9057-4D2C-BF7B-01F889479A2A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BrashSquirrel.ApiService", "BrashSquirrel.ApiService\BrashSquirrel.ApiService.csproj", "{54633E2D-097F-49A5-94C1-7A4BC3D1097F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BrashSquirrel.Web", "BrashSquirrel.Web\BrashSquirrel.Web.csproj", "{04218AF5-AFBF-4C11-AF31-823B9135675A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{7A6E43D0-DDAB-4FFF-9ACD-861BF6E1DDE8}"
+	ProjectSection(SolutionItems) = preProject
+		..\.gitignore = ..\.gitignore
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9F82BC11-BD8C-4118-9C1C-72A86A7D5E10}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9F82BC11-BD8C-4118-9C1C-72A86A7D5E10}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9F82BC11-BD8C-4118-9C1C-72A86A7D5E10}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9F82BC11-BD8C-4118-9C1C-72A86A7D5E10}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1AD5688A-9057-4D2C-BF7B-01F889479A2A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1AD5688A-9057-4D2C-BF7B-01F889479A2A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1AD5688A-9057-4D2C-BF7B-01F889479A2A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1AD5688A-9057-4D2C-BF7B-01F889479A2A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{54633E2D-097F-49A5-94C1-7A4BC3D1097F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{54633E2D-097F-49A5-94C1-7A4BC3D1097F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{54633E2D-097F-49A5-94C1-7A4BC3D1097F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{54633E2D-097F-49A5-94C1-7A4BC3D1097F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{04218AF5-AFBF-4C11-AF31-823B9135675A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{04218AF5-AFBF-4C11-AF31-823B9135675A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{04218AF5-AFBF-4C11-AF31-823B9135675A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{04218AF5-AFBF-4C11-AF31-823B9135675A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A0BC1543-E1DE-4AC7-907A-01127E666DC3}
+	EndGlobalSection
+EndGlobal
