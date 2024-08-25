@@ -43,6 +43,7 @@ jobs:
           azd provision --no-prompt
         env:
             AZD_INITIAL_ENVIRONMENT_CONFIG: ${{ secrets.AZD_INITIAL_ENVIRONMENT_CONFIG }}
+            AZURE_ENV_NAME: ${{ env.AZURE_ENV_NAME }}
 
       - name: Deploy Application
         run: azd deploy --no-prompt
