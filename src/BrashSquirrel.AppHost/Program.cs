@@ -10,7 +10,7 @@ var openAi = builder.AddAzureOpenAI("AZURE-OPENAI-CONNSTR")
             modelName: "gpt-4o-mini",
             modelVersion: "2024-07-18",
             skuName: "GlobalStandard",
-            skuCapacity: 2000));
+            skuCapacity: 1000));
 
 var apiService = builder.AddProject<Projects.BrashSquirrel_ApiService>("apiservice")
     .WithReference(insights)
