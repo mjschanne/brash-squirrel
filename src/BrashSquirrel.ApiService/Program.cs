@@ -1,15 +1,24 @@
+using Azure;
+using Microsoft.AspNetCore.Mvc;
+using OpenAI;
+using OpenAI.Chat;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add service defaults & Aspire components.
 builder.AddServiceDefaults();
 
+builder.AddAzureOpenAIClient("AZURE-OPENAI-CONNSTR");
+
 // Add services to the container.
 builder.Services.AddProblemDetails();
+
 
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 app.UseExceptionHandler();
+
 
 var summaries = new[]
 {
@@ -27,6 +36,13 @@ app.MapGet("/weatherforecast", () =>
         ))
         .ToArray();
     return forecast;
+});
+
+app.MapPost("/chat", async ([FromServices] ChatClient client, [FromBody] string prompt) =>
+{
+    var clientResult = await client.CompleteChatAsync(prompt);
+
+    return clientResult.Value;
 });
 
 app.UseSwagger();
