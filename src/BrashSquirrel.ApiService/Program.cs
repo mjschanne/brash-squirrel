@@ -1,5 +1,6 @@
 using Azure.Monitor.OpenTelemetry.AspNetCore;
-using BrashSquirrel.ApiService;
+using BrashSquirrel.ApiService.Services;
+using BrashSquirrel.Shared.Constants;
 using Microsoft.AspNetCore.Mvc;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -7,28 +8,21 @@ var builder = WebApplication.CreateBuilder(args);
 // Add service defaults & Aspire components.
 builder.AddServiceDefaults();
 
-//builder.AddAzureOpenAIClient("AZURE-OPENAI-CONNSTR");
-//builder.AddAzureOpenAIClient("openAi");
+var appInsightsConnStr = builder.Configuration.GetValue<string>(ResourceKeys.APPLICATIONINSIGHTS_CONNECTION_STRING);
+var openaiConnStr = builder.Configuration.GetConnectionString(ResourceKeys.AZURE_OPENAI_CONN_STR);
 
+ArgumentException.ThrowIfNullOrWhiteSpace(appInsightsConnStr, ResourceKeys.APPLICATIONINSIGHTS_CONNECTION_STRING);
+ArgumentException.ThrowIfNullOrWhiteSpace(openaiConnStr, ResourceKeys.AZURE_OPENAI_CONN_STR);
 
-if (!string.IsNullOrEmpty(builder.Configuration["APPLICATIONINSIGHTS_CONNECTION_STRING"]))
-{
-    builder.Services.AddOpenTelemetry().UseAzureMonitor();
-}
-
-var appInsightsConnStr = builder.Configuration.GetValue<string>("APPLICATIONINSIGHTS_CONNECTION_STRING");
-
-var openaiConnStr = builder.Configuration.GetConnectionString("AZURE-OPENAI-CONNSTR");
-var openaiConnStrDict = openaiConnStr.ParseAsConnectionString();
-// todo: clean this up
-// todo: add magic strings tying all this together to a shared library with a static class of constant strings that we use for type safety
+builder.Services.AddOpenTelemetry().UseAzureMonitor();
 
 builder.Services.AddSwaggerGen();
 
-// Add services to the container.
 builder.Services.AddProblemDetails();
 
-builder.Services.AddSingleton<MyKernelService>(_ => new MyKernelService("chat", openaiConnStrDict["Endpoint"], appInsightsConnStr)); // serviceProvider => new MyKernelService(serviceProvider));
+var openaiConnStrDict = openaiConnStr!.ParseAsConnectionString();
+var chatKernel = new MainChatKernelService(ResourceKeys.AZURE_OPENAI_CHAT_DEPLOYMENT_NAME, openaiConnStrDict["Endpoint"], appInsightsConnStr);
+builder.Services.AddSingleton(_ => chatKernel);
 
 var app = builder.Build();
 
@@ -54,15 +48,10 @@ app.MapGet("/weatherforecast", () =>
     return forecast;
 });
 
-app.MapPost("/chat", async ([FromServices] MyKernelService kernelService, [FromBody] string prompt) => // [FromServices] OpenAIClient client, 
+app.MapPost("/chat", async ([FromServices] MainChatKernelService kernelService, [FromBody] string prompt) =>
 {
 
     return await kernelService.ChatAsync(prompt);
-    //var chat = client.GetChatClient("chat");
-
-    //var clientResult = await chat.CompleteChatAsync(prompt);
-
-    //return clientResult.Value;
 });
 
 app.UseSwagger();
@@ -95,7 +84,7 @@ public static class Extensions
                 }
             }
         }
-        
+
         return result;
     }
 }

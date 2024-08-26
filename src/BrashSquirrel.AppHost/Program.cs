@@ -1,9 +1,13 @@
+
+
 var builder = DistributedApplication.CreateBuilder(args);
 
 var insights = builder.AddAzureApplicationInsights("appinsights");
 
-
-var openAi = builder.AddAzureOpenAI("AZURE-OPENAI-CONNSTR")
+// can't use shared class library for constants yet https://github.com/dotnet/aspire/issues/2769
+// for now, whenever you go to modify a magic string in this file just be sure to check if it has
+// a corresponding constant in the shared library
+var openAi = builder.AddAzureOpenAI("openai")
 //var openAi = builder.AddAzureOpenAI("openAi")   ///                    TODO: move to this during a time where I'm not working much so that I can let the dust settle on the rg
     .AddDeployment(
         // https://learn.microsoft.com/en-us/azure/ai-services/openai/concepts/models#gpt-4-and-gpt-4-turbo-model-availability

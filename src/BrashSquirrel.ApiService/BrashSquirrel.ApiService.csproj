@@ -23,6 +23,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\BrashSquirrel.ServiceDefaults\BrashSquirrel.ServiceDefaults.csproj" />
+    <ProjectReference Include="..\BrashSquirrel.Shared\BrashSquirrel.Shared.csproj" />
   </ItemGroup>
 
 </Project>
