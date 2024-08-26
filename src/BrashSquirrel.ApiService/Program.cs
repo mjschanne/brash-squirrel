@@ -10,6 +10,8 @@ builder.AddServiceDefaults();
 
 builder.AddAzureOpenAIClient("AZURE-OPENAI-CONNSTR");
 
+builder.Services.AddSwaggerGen();
+
 // Add services to the container.
 builder.Services.AddProblemDetails();
 

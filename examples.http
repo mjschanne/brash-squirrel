@@ -1,0 +1,4 @@
+POST https://localhost:7542/chat
+Content-Type: text/text/plain
+
+Hello, world!
