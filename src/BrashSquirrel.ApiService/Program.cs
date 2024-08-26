@@ -29,6 +29,9 @@ app.MapGet("/weatherforecast", () =>
     return forecast;
 });
 
+app.UseSwagger();
+app.UseSwaggerUI();
+
 app.MapDefaultEndpoints();
 
 app.Run();
