@@ -8,7 +8,7 @@ var openAi = builder.AddAzureOpenAI("AZURE-OPENAI-CONNSTR")
             name: "chatmodel",
             modelName: "gpt-4o-mini",
             modelVersion: "2024-07-18",
-            skuName: "Standard",
+            skuName: "GlobalStandard",
             skuCapacity: 1000));
 
 var apiService = builder.AddProject<Projects.BrashSquirrel_ApiService>("apiservice")
