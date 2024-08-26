@@ -38,9 +38,11 @@ app.MapGet("/weatherforecast", () =>
     return forecast;
 });
 
-app.MapPost("/chat", async ([FromServices] ChatClient client, [FromBody] string prompt) =>
+app.MapPost("/chat", async ([FromServices] OpenAIClient client, [FromBody] string prompt) =>
 {
-    var clientResult = await client.CompleteChatAsync(prompt);
+    var chat = client.GetChatClient("chat");
+
+    var clientResult = await chat.CompleteChatAsync(prompt);
 
     return clientResult.Value;
 });
