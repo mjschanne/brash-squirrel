@@ -1,5 +1,3 @@
-
-
 var builder = DistributedApplication.CreateBuilder(args);
 
 var insights = builder.AddAzureApplicationInsights("appinsights");
@@ -18,10 +16,15 @@ var openAi = builder.AddAzureOpenAI("openai")
             skuName: "GlobalStandard",
             skuCapacity: 1000));
 
+var cosmos = builder.AddAzureCosmosDB("cosmos");
+var cosmosdb = cosmos.AddDatabase("chatHistory");
+
 var apiService = builder.AddProject<Projects.BrashSquirrel_ApiService>("apiservice")
     .WithExternalHttpEndpoints() // I want to be able to hit my API directly in deployed state for testing
     .WithReference(insights)
-    .WithReference(openAi);
+    .WithReference(openAi)
+    ;
+    //.WithReference(cosmosdb);
 
 builder.AddProject<Projects.BrashSquirrel_Web>("webfrontend")
     .WithExternalHttpEndpoints()

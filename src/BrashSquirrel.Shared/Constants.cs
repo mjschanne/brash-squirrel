@@ -23,4 +23,9 @@ public static class ResourceKeys
 
     // web
     public static string WEB_PROJECT_NAME = "webfrontend";
+
+    // cosmos
+    public static string COSMOS_NAME = "cosmos";
+    public static string COSMOS_DB_NAME = "chatHistory";
+    public static string COSMOS_CONTAINER_NAME = "chatSessions";
 }
