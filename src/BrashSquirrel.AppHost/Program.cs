@@ -11,8 +11,8 @@ var openAi = builder.AddAzureOpenAI("openai")
         // https://learn.microsoft.com/en-us/azure/ai-services/openai/concepts/models#gpt-4-and-gpt-4-turbo-model-availability
         new AzureOpenAIDeployment(
             name: "chat",
-            modelName: "gpt-4o-mini",
-            modelVersion: "2024-07-18",
+            modelName: "gpt-4o",
+            modelVersion: "2024-05-13",
             skuName: "GlobalStandard",
             skuCapacity: 1000));
 
